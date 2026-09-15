@@ -4,122 +4,778 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Đăng ký tài khoản bựa 🤡</title>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh;background:linear-gradient(135deg,#111827,#312e81,#7c3aed);display:flex;align-items:center;justify-content:center;padding:24px;color:#172033}
-.container{width:min(520px,100%)}
-.card{background:rgba(255,255,255,.97);border:1px solid rgba(255,255,255,.4);border-radius:28px;padding:30px;box-shadow:0 25px 70px rgba(0,0,0,.3);animation:show .55s ease}
-@keyframes show{from{opacity:0;transform:translateY(20px) scale(.98)}to{opacity:1;transform:none}}
-.logo{font-size:48px;text-align:center;margin-bottom:4px}.title{text-align:center;font-size:28px;font-weight:900}.sub{text-align:center;color:#6b7280;font-size:14px;margin:8px 0 24px}
-.group{margin-bottom:17px}label{display:block;font-weight:800;font-size:14px;margin-bottom:7px}.input{width:100%;padding:13px 15px;border:2px solid #e5e7eb;border-radius:14px;font-size:15px;outline:none;transition:.2s;background:#fff}.input:focus{border-color:#7c3aed;box-shadow:0 0 0 4px rgba(124,58,237,.1)}
-.message{min-height:22px;margin-top:8px;font-size:13px;font-weight:700}.error{color:#dc2626}.hint{color:#6b7280;font-weight:500}
-.options{display:grid;grid-template-columns:1fr 1fr;gap:9px}.option{border:2px solid #e5e7eb;border-radius:12px;padding:11px;cursor:pointer;font-size:14px;transition:.2s;background:#fff}.option:hover{border-color:#a78bfa;background:#faf5ff}.option input{margin-right:6px}
-.captcha{background:#f3f4f6;border-radius:16px;padding:16px;margin:20px 0}.captcha-title{font-weight:900;margin-bottom:11px}.captcha button{border:2px solid #ddd;background:#fff;border-radius:10px;padding:9px 11px;margin:4px 3px;cursor:pointer;font-weight:700}.captcha button:hover{border-color:#7c3aed}.captcha-result{font-size:13px;font-weight:800;margin-top:8px;min-height:18px}
-.submit{width:100%;border:0;border-radius:16px;padding:15px;background:linear-gradient(135deg,#7c3aed,#ec4899);color:#fff;font-size:16px;font-weight:900;cursor:pointer;box-shadow:0 10px 25px rgba(124,58,237,.25);transition:.2s}.submit:hover{transform:translateY(-2px)}.submit:disabled{opacity:.45;cursor:not-allowed;transform:none}
-.note{text-align:center;color:#9ca3af;font-size:11px;margin-top:15px}.result{display:none;text-align:center}.result .big{font-size:62px}.result h2{font-size:27px;margin:5px 0 10px}.stats{background:#f3f4f6;border-radius:16px;padding:15px;text-align:left;margin:18px 0}.stats p{padding:5px 0;font-size:14px}.again{border:0;background:#111827;color:#fff;border-radius:13px;padding:12px 18px;font-weight:800;cursor:pointer}
-@media(max-width:480px){.card{padding:22px;border-radius:22px}.title{font-size:24px}.options{grid-template-columns:1fr}}
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    min-height:100vh;
+    background:linear-gradient(135deg,#111827,#312e81,#7c3aed);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    color:#172033;
+}
+
+.container{
+    width:100%;
+    max-width:520px;
+}
+
+.card{
+    background:#fff;
+    border-radius:28px;
+    padding:30px;
+    box-shadow:0 25px 70px rgba(0,0,0,.3);
+}
+
+.logo{
+    text-align:center;
+    font-size:50px;
+    margin-bottom:5px;
+}
+
+.title{
+    text-align:center;
+    font-size:28px;
+    font-weight:900;
+}
+
+.sub{
+    text-align:center;
+    color:#6b7280;
+    font-size:14px;
+    margin:8px 0 25px;
+}
+
+.group{
+    margin-bottom:17px;
+}
+
+label{
+    display:block;
+    font-weight:800;
+    font-size:14px;
+    margin-bottom:7px;
+}
+
+.input{
+    width:100%;
+    padding:13px 15px;
+    border:2px solid #e5e7eb;
+    border-radius:14px;
+    font-size:15px;
+    outline:none;
+    background:#fff;
+    transition:.2s;
+}
+
+.input:focus{
+    border-color:#7c3aed;
+    box-shadow:0 0 0 4px rgba(124,58,237,.1);
+}
+
+textarea.input{
+    min-height:100px;
+    resize:vertical;
+}
+
+.age-note{
+    display:none;
+    margin-top:7px;
+    color:#dc2626;
+    font-size:13px;
+    font-weight:800;
+}
+
+.password-box{
+    position:relative;
+}
+
+.password-box .input{
+    padding-right:50px;
+}
+
+.show-password{
+    position:absolute;
+    right:14px;
+    top:50%;
+    transform:translateY(-50%);
+    border:0;
+    background:none;
+    font-size:18px;
+    cursor:pointer;
+}
+
+.buttons{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:20px;
+}
+
+.btn{
+    border:0;
+    border-radius:15px;
+    padding:14px;
+    font-size:15px;
+    font-weight:900;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+}
+
+.register-btn{
+    background:linear-gradient(135deg,#7c3aed,#ec4899);
+    color:#fff;
+}
+
+.login-btn{
+    background:#111827;
+    color:#fff;
+}
+
+.full-btn{
+    width:100%;
+    margin-top:20px;
+}
+
+.message{
+    min-height:22px;
+    margin-top:15px;
+    text-align:center;
+    font-size:14px;
+    font-weight:800;
+    line-height:1.5;
+    white-space:pre-line;
+}
+
+.note{
+    text-align:center;
+    color:#9ca3af;
+    font-size:11px;
+    margin-top:16px;
+    line-height:1.5;
+}
+
+.back{
+    width:100%;
+    border:0;
+    background:none;
+    color:#7c3aed;
+    font-weight:800;
+    font-size:13px;
+    margin-top:16px;
+    cursor:pointer;
+}
+
+@media(max-width:480px){
+
+    .card{
+        padding:22px;
+        border-radius:22px;
+    }
+
+    .title{
+        font-size:24px;
+    }
+
+    .buttons{
+        grid-template-columns:1fr;
+    }
+
+}
 </style>
 </head>
+
 <body>
+
 <div class="container">
+
 <div class="card">
-<div id="formScreen">
+
 <div class="logo">🤡</div>
-<h1 class="title">Đăng ký tài khoản</h1>
-<p class="sub">Tham gia cộng đồng những người chưa biết mình đang làm gì.</p>
+
+<h1 class="title" id="pageTitle">
+Đăng ký tài khoản
+</h1>
+
+<p class="sub" id="pageSub">
+Tạo tài khoản thật theo phong cách không giống ai.
+</p>
+
+
+<!-- ==================== TRANG ĐĂNG KÝ ==================== -->
+
+<div id="registerPage">
 
 <div class="group">
-<label for="name">👤 Họ tên</label>
-<input class="input" id="name" placeholder="Tên thật đi, đừng ghi Người đẹp trai nhất xóm">
+
+<label for="username">
+🪪 Tên tài khoản
+</label>
+
+<input
+    class="input"
+    id="username"
+    type="text"
+    autocomplete="username"
+    placeholder="Ví dụ: phap123"
+>
+
 </div>
+
 
 <div class="group">
-<label for="username">🪪 Tên tài khoản</label>
-<input class="input" id="username" placeholder="Ví dụ: nguoidung123">
+
+<label for="password">
+🔐 Mật khẩu
+</label>
+
+<div class="password-box">
+
+<input
+    class="input"
+    id="password"
+    type="password"
+    autocomplete="new-password"
+    placeholder="Ít nhất 6 ký tự"
+>
+
+<button
+    class="show-password"
+    type="button"
+    onclick="toggleRegisterPassword()"
+    id="registerEye"
+>
+👁️
+</button>
+
 </div>
+
+</div>
+
 
 <div class="group">
-<label for="password">🔐 Mật khẩu</label>
-<input class="input" id="password" type="password" placeholder="Đừng dùng 123456 nữa 😭">
+
+<label for="email">
+📧 Email
+</label>
+
+<input
+    class="input"
+    id="email"
+    type="email"
+    autocomplete="email"
+    placeholder="example@gmail.com"
+>
+
 </div>
+
 
 <div class="group">
-<input class="input" id="age" type="number" min="1" max="120" placeholder="Nhập tuổi bất kỳ...">
+
+<label for="phone">
+📱 Số điện thoại
+</label>
+
+<input
+    class="input"
+    id="phone"
+    type="tel"
+    autocomplete="tel"
+    placeholder="Nhập số điện thoại"
+>
+
 </div>
+
 
 <div class="group">
-<label>❤️ Tình trạng hiện tại</label>
-<div class="options">
-<label class="option"><input type="radio" name="love" value="Có người yêu"> Có người yêu ❤️</label>
-<label class="option"><input type="radio" name="love" value="Độc thân"> Độc thân 🗿</label>
-<label class="option"><input type="radio" name="love" value="Đang tìm hiểu"> Đang tìm hiểu 👀</label>
-<label class="option"><input type="radio" name="love" value="Không tiện nói"> Không tiện nói 🤫</label>
-</div>
+
+<label for="age">
+🎂 Tuổi
+</label>
+
+<input
+    class="input"
+    id="age"
+    type="number"
+    min="1"
+    max="120"
+    placeholder="Nhập tuổi"
+>
+
+<p
+    class="age-note"
+    id="ageNote"
+>
+Tuổi x đã tồn tại, vui lòng chọn tuổi khác.
+</p>
+
 </div>
 
-<div class="captcha">
-<div class="captcha-title">🧠 Xác minh bạn là con người</div>
-<div>2 + 2 = ?</div>
-<button type="button" onclick="captcha(0)">4</button>
-<button type="button" onclick="captcha(1)">22</button>
-<button type="button" onclick="captcha(2)">Tuỳ tình huống</button>
-<div id="captchaResult" class="captcha-result"></div>
+
+<div class="group">
+
+<label for="note">
+📝 Ghi chú
+</label>
+
+<textarea
+    class="input"
+    id="note"
+    placeholder="Ghi chú của bạn..."
+></textarea>
+
 </div>
 
-<button id="submitBtn" class="submit" type="button" onclick="register()" disabled>🔥 TÔI CHẤP NHẬN BỊ PHÁN XÉT</button>
-<p class="note">* Đây là trang demo vui. Dữ liệu chỉ được lưu trên trình duyệt này.</p>
+
+<div class="buttons">
+
+<button
+    class="btn register-btn"
+    type="button"
+    onclick="register()"
+>
+🔥 ĐĂNG KÝ
+</button>
+
+<button
+    class="btn login-btn"
+    type="button"
+    onclick="showLogin()"
+>
+🔑 ĐĂNG NHẬP
+</button>
+
 </div>
 
-<div id="resultScreen" class="result">
-<div class="big">🎉</div>
-<h2>ĐĂNG KÝ THÀNH CÔNG!</h2>
-<p id="resultText"></p>
-<div class="stats">
-<p>🗿 Độ ổn: <b>43%</b></p>
-<p>😴 Độ lười: <b>82%</b></p>
-<p>🔑 Khả năng quên mật khẩu: <b>99%</b></p>
-<p>💰 Khả năng giàu: <b>Đang cập nhật...</b></p>
 </div>
-<p style="margin-bottom:18px;color:#6b7280">Hệ thống đã công nhận bạn là một con người bình thường nhưng hơi có vấn đề.</p>
-<button class="again" onclick="location.reload()">🔄 Đăng ký người khác</button>
+
+
+<!-- ==================== TRANG ĐĂNG NHẬP ==================== -->
+
+<div id="loginPage" style="display:none;">
+
+<div class="group">
+
+<label for="loginUsername">
+🪪 Tên tài khoản
+</label>
+
+<input
+    class="input"
+    id="loginUsername"
+    type="text"
+    autocomplete="username"
+    placeholder="Nhập tên tài khoản"
+>
+
 </div>
+
+
+<div class="group">
+
+<label for="loginPassword">
+🔐 Mật khẩu
+</label>
+
+<div class="password-box">
+
+<input
+    class="input"
+    id="loginPassword"
+    type="password"
+    autocomplete="current-password"
+    placeholder="Nhập mật khẩu"
+>
+
+<button
+    class="show-password"
+    type="button"
+    onclick="toggleLoginPassword()"
+    id="loginEye"
+>
+👁️
+</button>
+
 </div>
+
 </div>
+
+
+<button
+    class="btn login-btn full-btn"
+    type="button"
+    onclick="login()"
+>
+🔑 ĐĂNG NHẬP
+</button>
+
+
+<button
+    class="back"
+    type="button"
+    onclick="showRegister()"
+>
+← Quay lại trang đăng ký
+</button>
+
+</div>
+
+
+<div
+    id="message"
+    class="message"
+></div>
+
+
+
+</div>
+
+</div>
+
 
 <script>
-let humanOK=false;
 
-function checkAge(){
- const age=Number(document.getElementById('age').value);
- const box=document.getElementById('ageMessage');
- if(!age){box.className='message hint';box.textContent='Hệ thống đang chờ bạn nhập tuổi để từ chối 🗿';return;}
- if(age<1||age>120){box.className='message error';box.textContent='🚨 Tuổi này hơi đáng ngờ. Chọn từ 1 đến 120 thôi nhé.';return;}
- box.className='message error';
- box.textContent=`❌ TUỔI ${age} ĐÃ CÓ NGƯỜI SỬ DỤNG! Vui lòng chọn tuổi khác.`;
+/* ==================== HIỂN THỊ THÔNG BÁO ==================== */
+
+function showMessage(text,type="error"){
+
+    const message =
+        document.getElementById("message");
+
+    message.textContent = text;
+
+    message.style.color =
+        type === "success"
+        ? "#16a34a"
+        : "#dc2626";
 }
 
-document.getElementById('age').addEventListener('input',checkAge);
 
-function captcha(choice){
- const result=document.getElementById('captchaResult');
- if(choice===0){humanOK=true;result.style.color='#16a34a';result.textContent='✅ Chính xác. Con người đã được xác nhận.';}
- else if(choice===3){humanOK=true;result.style.color='#7c3aed';result.textContent='❤️ Kiến thức không có trong sách nhưng hệ thống chấp nhận.';}
- else {humanOK=false;result.style.color='#dc2626';result.textContent='❌ Sai. Hãy suy nghĩ bằng não người một lần nữa.';}
- updateButton();
-}
+/* ==================== TUỔI ==================== */
 
-function updateButton(){document.getElementById('submitBtn').disabled=true;}
+const ageInput =
+    document.getElementById("age");
+
+const ageNote =
+    document.getElementById("ageNote");
+
+
+/*
+Khi đang nhập tuổi:
+Không hiện thông báo.
+*/
+
+ageInput.addEventListener("input",function(){
+
+    ageNote.style.display = "none";
+
+});
+
+
+/*
+Khi rời khỏi ô tuổi:
+Hiện thông báo với tuổi người dùng nhập.
+*/
+
+ageInput.addEventListener("blur",function(){
+
+    const age =
+        this.value.trim();
+
+    if(age){
+
+        ageNote.textContent =
+            `Tuổi ${age} đã tồn tại, vui lòng chọn tuổi khác.`;
+
+        ageNote.style.display = "block";
+
+    }else{
+
+        ageNote.style.display = "none";
+
+    }
+
+});
+
+
+/* ==================== ĐĂNG KÝ ==================== */
 
 function register(){
- const name=document.getElementById('name').value.trim();
- const username=document.getElementById('username').value.trim();
- const password=document.getElementById('password').value;
- const age=Number(document.getElementById('age').value);
- if(!name||!username||!password){alert('⚠️ Điền đủ họ tên, tên tài khoản và mật khẩu trước nhé!');return;}
- if(!age||age<1||age>120){alert('⚠️ Nhập tuổi từ 1 đến 120 nhé!');return;}
- if(password.length<6){alert('🔐 Mật khẩu ít nhất 6 ký tự nhé!');return;}
- alert(`❌ ĐĂNG KÝ THẤT BẠI!\n\nTuổi ${age} đã có người sử dụng.\n\nBạn có thể đổi tên, đổi mật khẩu, đổi tình trạng... nhưng đổi tuổi thì cũng vô ích. 🗿`);
+
+    const username =
+        document
+        .getElementById("username")
+        .value
+        .trim();
+
+    const password =
+        document
+        .getElementById("password")
+        .value;
+
+    const email =
+        document
+        .getElementById("email")
+        .value
+        .trim();
+
+    const phone =
+        document
+        .getElementById("phone")
+        .value
+        .trim();
+
+    const age =
+        Number(
+            document
+            .getElementById("age")
+            .value
+        );
+
+
+    if(
+        !username ||
+        !password ||
+        !email ||
+        !phone ||
+        !age
+    ){
+
+        showMessage(
+            "⚠️ Vui lòng nhập đầy đủ thông tin!"
+        );
+
+        return;
+    }
+
+
+    if(username.length < 3){
+
+        showMessage(
+            "⚠️ Tên tài khoản phải có ít nhất 3 ký tự!"
+        );
+
+        return;
+    }
+
+
+    if(password.length < 6){
+
+        showMessage(
+            "🔐 Mật khẩu phải có ít nhất 6 ký tự!"
+        );
+
+        return;
+    }
+
+
+    const emailRegex =
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+    if(!emailRegex.test(email)){
+
+        showMessage(
+            "📧 Email không hợp lệ!"
+        );
+
+        return;
+    }
+
+
+    const phoneRegex =
+        /^0\d{9,10}$/;
+
+
+    if(!phoneRegex.test(phone)){
+
+        showMessage(
+            "📱 Số điện thoại không hợp lệ!"
+        );
+
+        return;
+    }
+
+
+    if(age < 1 || age > 120){
+
+        showMessage(
+            "🎂 Tuổi phải từ 1 đến 120!"
+        );
+
+        return;
+    }
+
+
+    showMessage(
+        `❌ KHÔNG THỂ TẠO TÀI KHOẢN!
+
+Tuổi ${age} đã tồn tại, vui lòng chọn tuổi khác.`
+    );
+
 }
+
+
+/* ==================== ĐĂNG NHẬP ==================== */
+
+function login(){
+
+    const username =
+        document
+        .getElementById("loginUsername")
+        .value
+        .trim();
+
+    const password =
+        document
+        .getElementById("loginPassword")
+        .value;
+
+
+    if(!username || !password){
+
+        showMessage(
+            "⚠️ Vui lòng nhập tên tài khoản và mật khẩu!"
+        );
+
+        return;
+    }
+
+
+    showMessage(
+        "❌ Đăng nhập thất bại!\n\nKhông tìm thấy tài khoản nào trong hệ thống. 🤡"
+    );
+
+}
+
+
+/* ==================== CHUYỂN TRANG ĐĂNG NHẬP ==================== */
+
+function showLogin(){
+
+    document
+        .getElementById("registerPage")
+        .style.display = "none";
+
+    document
+        .getElementById("loginPage")
+        .style.display = "block";
+
+
+    document
+        .getElementById("pageTitle")
+        .textContent = "Đăng nhập";
+
+
+    document
+        .getElementById("pageSub")
+        .textContent =
+        "Chào mừng bạn quay lại với hệ thống.";
+
+
+    document
+        .getElementById("message")
+        .textContent = "";
+
+}
+
+
+/* ==================== QUAY LẠI ĐĂNG KÝ ==================== */
+
+function showRegister(){
+
+    document
+        .getElementById("loginPage")
+        .style.display = "none";
+
+    document
+        .getElementById("registerPage")
+        .style.display = "block";
+
+
+    document
+        .getElementById("pageTitle")
+        .textContent =
+        "Đăng ký tài khoản";
+
+
+    document
+        .getElementById("pageSub")
+        .textContent =
+        "Tạo tài khoản thật theo phong cách không giống ai.";
+
+
+    document
+        .getElementById("message")
+        .textContent = "";
+
+}
+
+
+/* ==================== HIỆN / ẨN MẬT KHẨU ĐĂNG KÝ ==================== */
+
+function toggleRegisterPassword(){
+
+    const password =
+        document.getElementById("password");
+
+    const eye =
+        document.getElementById("registerEye");
+
+
+    if(password.type === "password"){
+
+        password.type = "text";
+        eye.textContent = "🙈";
+
+    }else{
+
+        password.type = "password";
+        eye.textContent = "👁️";
+
+    }
+
+}
+
+
+/* ==================== HIỆN / ẨN MẬT KHẨU ĐĂNG NHẬP ==================== */
+
+function toggleLoginPassword(){
+
+    const password =
+        document.getElementById("loginPassword");
+
+    const eye =
+        document.getElementById("loginEye");
+
+
+    if(password.type === "password"){
+
+        password.type = "text";
+        eye.textContent = "🙈";
+
+    }else{
+
+        password.type = "password";
+        eye.textContent = "👁️";
+
+    }
+
+}
+
 </script>
+
 </body>
 </html>
