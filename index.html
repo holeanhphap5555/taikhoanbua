@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đăng ký tài khoản bựa 🤡</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh;background:linear-gradient(135deg,#111827,#312e81,#7c3aed);display:flex;align-items:center;justify-content:center;padding:24px;color:#172033}
+.container{width:min(520px,100%)}
+.card{background:rgba(255,255,255,.97);border:1px solid rgba(255,255,255,.4);border-radius:28px;padding:30px;box-shadow:0 25px 70px rgba(0,0,0,.3);animation:show .55s ease}
+@keyframes show{from{opacity:0;transform:translateY(20px) scale(.98)}to{opacity:1;transform:none}}
+.logo{font-size:48px;text-align:center;margin-bottom:4px}.title{text-align:center;font-size:28px;font-weight:900}.sub{text-align:center;color:#6b7280;font-size:14px;margin:8px 0 24px}
+.group{margin-bottom:17px}label{display:block;font-weight:800;font-size:14px;margin-bottom:7px}.input{width:100%;padding:13px 15px;border:2px solid #e5e7eb;border-radius:14px;font-size:15px;outline:none;transition:.2s;background:#fff}.input:focus{border-color:#7c3aed;box-shadow:0 0 0 4px rgba(124,58,237,.1)}
+.age-row{display:flex;gap:10px}.age-row .input{flex:1}.check-btn{border:0;border-radius:14px;padding:0 16px;background:#111827;color:#fff;font-weight:800;cursor:pointer}.check-btn:hover{background:#374151}
+.message{min-height:22px;margin-top:8px;font-size:13px;font-weight:700}.error{color:#dc2626}.success{color:#16a34a}.hint{color:#6b7280;font-weight:500}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:9px}.option{border:2px solid #e5e7eb;border-radius:12px;padding:11px;cursor:pointer;font-size:14px;transition:.2s;background:#fff}.option:hover{border-color:#a78bfa;background:#faf5ff}.option input{margin-right:6px}
+.captcha{background:#f3f4f6;border-radius:16px;padding:16px;margin:20px 0}.captcha-title{font-weight:900;margin-bottom:11px}.captcha button{border:2px solid #ddd;background:#fff;border-radius:10px;padding:9px 11px;margin:4px 3px;cursor:pointer;font-weight:700}.captcha button:hover{border-color:#7c3aed}.captcha-result{font-size:13px;font-weight:800;margin-top:8px;min-height:18px}
+.submit{width:100%;border:0;border-radius:16px;padding:15px;background:linear-gradient(135deg,#7c3aed,#ec4899);color:#fff;font-size:16px;font-weight:900;cursor:pointer;box-shadow:0 10px 25px rgba(124,58,237,.25);transition:.2s}.submit:hover{transform:translateY(-2px)}.submit:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.note{text-align:center;color:#9ca3af;font-size:11px;margin-top:15px}.result{display:none;text-align:center}.result .big{font-size:62px}.result h2{font-size:27px;margin:5px 0 10px}.stats{background:#f3f4f6;border-radius:16px;padding:15px;text-align:left;margin:18px 0}.stats p{padding:5px 0;font-size:14px}.again{border:0;background:#111827;color:#fff;border-radius:13px;padding:12px 18px;font-weight:800;cursor:pointer}
+@media(max-width:480px){.card{padding:22px;border-radius:22px}.title{font-size:24px}.options{grid-template-columns:1fr}.age-row{flex-direction:column}.check-btn{padding:12px}}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="card">
+<div id="formScreen">
+<div class="logo">🤡</div>
+<h1 class="title">Đăng ký tài khoản</h1>
+<p class="sub">Tham gia cộng đồng những người chưa biết mình đang làm gì.</p>
+
+<div class="group">
+<label for="name">👤 Họ tên</label>
+<input class="input" id="name" placeholder="Tên thật đi, đừng ghi Người đẹp trai nhất xóm">
+</div>
+
+<div class="group">
+<label for="username">🪪 Tên tài khoản</label>
+<input class="input" id="username" placeholder="Ví dụ: nguoidung123">
+</div>
+
+<div class="group">
+<label for="password">🔐 Mật khẩu</label>
+<input class="input" id="password" type="password" placeholder="Đừng dùng 123456 nữa 😭">
+</div>
+
+<div class="group">
+<label for="age">🎂 Tuổi <span style="color:#dc2626">* Tuổi đã có người nhận thì phải chọn tuổi khác</span></label>
+<div class="age-row">
+<input class="input" id="age" type="number" min="1" max="120" placeholder="Nhập tuổi">
+<button class="check-btn" type="button" onclick="checkAge()">Kiểm tra</button>
+</div>
+<div id="ageMessage" class="message hint">Một số tuổi đã được người khác đăng ký trước rồi 🗿</div>
+</div>
+
+<div class="group">
+<label>❤️ Tình trạng hiện tại</label>
+<div class="options">
+<label class="option"><input type="radio" name="love" value="Có người yêu"> Có người yêu ❤️</label>
+<label class="option"><input type="radio" name="love" value="Độc thân"> Độc thân 🗿</label>
+<label class="option"><input type="radio" name="love" value="Đang tìm hiểu"> Đang tìm hiểu 👀</label>
+<label class="option"><input type="radio" name="love" value="Không tiện nói"> Không tiện nói 🤫</label>
+</div>
+</div>
+
+<div class="captcha">
+<div class="captcha-title">🧠 Xác minh bạn là con người</div>
+<div>2 + 2 = ?</div>
+<button type="button" onclick="captcha(0)">4</button>
+<button type="button" onclick="captcha(1)">22</button>
+<button type="button" onclick="captcha(2)">Tuỳ tình huống</button>
+<button type="button" onclick="captcha(3)">Pháp yêu Thư ❤️</button>
+<div id="captchaResult" class="captcha-result"></div>
+</div>
+
+<button id="submitBtn" class="submit" type="button" onclick="register()" disabled>🔥 TÔI CHẤP NHẬN BỊ PHÁN XÉT</button>
+<p class="note">* Đây là trang demo vui. Dữ liệu chỉ được lưu trên trình duyệt này.</p>
+</div>
+
+<div id="resultScreen" class="result">
+<div class="big">🎉</div>
+<h2>ĐĂNG KÝ THÀNH CÔNG!</h2>
+<p id="resultText"></p>
+<div class="stats">
+<p>🗿 Độ ổn: <b>43%</b></p>
+<p>😴 Độ lười: <b>82%</b></p>
+<p>🔑 Khả năng quên mật khẩu: <b>99%</b></p>
+<p>💰 Khả năng giàu: <b>Đang cập nhật...</b></p>
+</div>
+<p style="margin-bottom:18px;color:#6b7280">Hệ thống đã công nhận bạn là một con người bình thường nhưng hơi có vấn đề.</p>
+<button class="again" onclick="location.reload()">🔄 Đăng ký người khác</button>
+</div>
+</div>
+</div>
+
+<script>
+const defaultAges=[16,18,19,20,21,22,23,24,25,27,30,35,40,50,60,70,80,90,99];
+let occupiedAges=JSON.parse(localStorage.getItem('occupiedAges')||'null')||defaultAges;
+let ageOK=false;
+let humanOK=false;
+
+function checkAge(){
+ const age=Number(document.getElementById('age').value);
+ const box=document.getElementById('ageMessage');
+ ageOK=false;
+ if(!age){box.className='message error';box.textContent='⚠️ Chưa nhập tuổi mà đã muốn đăng ký rồi à?';updateButton();return;}
+ if(age<1||age>120){box.className='message error';box.textContent='🚨 Tuổi này hơi đáng ngờ. Chọn từ 1 đến 120 thôi nhé.';updateButton();return;}
+ if(occupiedAges.includes(age)){
+   box.className='message error';
+   box.textContent=`❌ TUỔI ${age} ĐÃ CÓ NGƯỜI SỬ DỤNG! Vui lòng chọn tuổi khác.`;
+ }else{
+   ageOK=true;
+   box.className='message success';
+   box.textContent=`✅ Tuổi ${age} còn trống! Chúc mừng, bạn vừa giành được một độ tuổi chưa có chủ.`;
+ }
+ updateButton();
+}
+
+document.getElementById('age').addEventListener('input',()=>{ageOK=false;document.getElementById('ageMessage').className='message hint';document.getElementById('ageMessage').textContent='Nhập tuổi xong nhớ bấm Kiểm tra nhé 🧐';updateButton();});
+
+function captcha(choice){
+ const result=document.getElementById('captchaResult');
+ if(choice===0){humanOK=true;result.style.color='#16a34a';result.textContent='✅ Chính xác. Con người đã được xác nhận.';}
+ else if(choice===3){humanOK=true;result.style.color='#7c3aed';result.textContent='❤️ Kiến thức không có trong sách nhưng hệ thống chấp nhận.';}
+ else {humanOK=false;result.style.color='#dc2626';result.textContent='❌ Sai. Hãy suy nghĩ bằng não người một lần nữa.';}
+ updateButton();
+}
+
+function updateButton(){document.getElementById('submitBtn').disabled=!(ageOK&&humanOK);}
+
+function register(){
+ const name=document.getElementById('name').value.trim();
+ const username=document.getElementById('username').value.trim();
+ const password=document.getElementById('password').value;
+ const age=Number(document.getElementById('age').value);
+ if(!name||!username||!password){alert('⚠️ Điền đủ họ tên, tên tài khoản và mật khẩu trước nhé!');return;}
+ if(!ageOK){alert('❌ Tuổi chưa hợp lệ hoặc đã tồn tại. Hãy chọn tuổi khác!');return;}
+ if(password.length<6){alert('🔐 Mật khẩu ít nhất 6 ký tự nhé!');return;}
+ occupiedAges.push(age);
+ localStorage.setItem('occupiedAges',JSON.stringify([...new Set(occupiedAges)]));
+ document.getElementById('formScreen').style.display='none';
+ document.getElementById('resultScreen').style.display='block';
+ document.getElementById('resultText').innerHTML=`Tài khoản <b>${escapeHTML(username)}</b> đã được tạo với tuổi <b>${age}</b>.<br>Tuổi ${age} hiện đã chính thức có chủ. 🗿`;
+}
+
+function escapeHTML(text){return text.replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
+</script>
+</body>
+</html>
